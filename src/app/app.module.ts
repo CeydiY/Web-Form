@@ -8,6 +8,8 @@ import { FooterComponent } from './footer/footer/footer.component';
 import { FormComponent } from './form/form/form.component';
 import { CustomerComponent } from './customer/customer/customer.component';
 import { HomeComponent } from './home/home/home.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -21,6 +23,8 @@ import { HomeComponent } from './home/home/home.component';
   imports: [
     BrowserModule,
     app_routing,
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

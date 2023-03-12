@@ -1,0 +1,21 @@
+.img_form{
+  border-top-left-radius: .35em;
+  border-bottom-left-radius: .35rem;
+  height: 71em;
+  width: 100%;
+  margin-left: -1px;
+  margin-top: -1px;
+  margin-bottom: -1px;
+}
+input.ng-invalid.ng-touched {
+  border: red 1px solid;
+}
+input.ng-valid.ng-touched {
+  border: green 1px solid;
+}
+select.ng-invalid.ng-touched {
+  border: red 1px solid;
+}
+select.ng-valid.ng-touched {
+  border: green 1px solid;
+}
