@@ -16,7 +16,7 @@
                                       <div class="col-md-6 mb-4">
                                         <div class="form-outline">
                                           <label class="form-label" for="firstNameInput">First name*</label>
-                                          <input type="text" id="firstNameInput" class="form-control form-control-lg" formControlName="firstName" required/>
+                                          <input type="text" id="firstNameInput" class="form-control form-control-lg" formControlName="firstName" required ngModel/>
                                           <div *ngIf="firstName.invalid && (firstName.dirty || firstName.touched)" class="alert">
                                             <div *ngIf="firstName.errors?.['required']">
                                               <p class="text-danger">First name is required.</p>

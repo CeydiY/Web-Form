@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
 import Swal from 'sweetalert2';
+import {InformationService} from "../../information.service";
 
 @Component({
   selector: 'app-form',
@@ -8,7 +9,6 @@ import Swal from 'sweetalert2';
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements  OnInit{
-  countryDefault :String = 'Spain';
   countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria",
     "Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina",
     "Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile",
@@ -55,16 +55,16 @@ export class FormComponent implements  OnInit{
     password:this.password
   });
 
-  constructor(private formBuilder: FormBuilder) {
+  constructor(private informationService: InformationService){
+
   };
   ngOnInit(){
-
   };
-
   onRegistration(){
     if(this.registration.valid){
+      this.informationService.addInformation(this.registration.value);
+      console.log("INFO",this.registration.value)
       this.success();
-      console.log(this.registration.value);
       this.registration.reset();
     }
   };
