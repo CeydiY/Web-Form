@@ -1,0 +1,12 @@
+/* nav-bar */
+.navbar{
+  background-color: #EAEAEA;
+  color: black;
+  font-weight: bolder;
+}
+.collapse ul{
+  font-size: 2vh;
+}
+.navbar-brand{
+  margin-left: 1em;
+}

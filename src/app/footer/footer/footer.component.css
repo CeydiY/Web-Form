@@ -1,0 +1,9 @@
+footer{
+  background-color: #313D5A;
+}
+a {
+  text-decoration: none;
+}
+span, .social_media i, .links{
+  color: #eaeaea;
+}
