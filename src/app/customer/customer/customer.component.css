@@ -1,0 +1,39 @@
+.search{
+  position: center;
+  margin: 0 auto;
+  padding: 6px 40px 10px 25px;
+  height: 600px;
+  align-content: center;
+  align-items: center;
+}
+.search, .formSearch{
+  width: 500px ;
+  height: 50px;
+  max-width: 100%;
+  max-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  justify-content: center;
+}
+.well-white {
+  background-color: white;
+  color: #454545;
+}
+.mini-profile-widget .image-container .avatar {
+  width: 180px;
+  height: 180px;
+  display: block;
+  margin: 0 auto;
+  border-radius: 50%;
+  background: white;
+  padding: 4px;
+  border: 1px solid #dddddd;
+}
+.avatar{
+  margin-top: 1em;
+}
+.details{
+  margin-left: 3em;
+}
+
+

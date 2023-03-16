@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {FormBuilder, FormControl, FormGroup, Validators} from "@angular/forms";
+import {FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
 import Swal from 'sweetalert2';
 import {InformationService} from "../../information.service";
 
@@ -28,6 +28,23 @@ export class FormComponent implements  OnInit{
     "Zimbabwe"];
   onKeyDown(event: { code: string; key: any; }){
     return ['Backspace','Delete','ArrowLeft','ArrowRight'].includes(event.code) ? true : !isNaN(Number(event.key)) && event.code!=='Space';
+  };
+
+  validateBirthDate(){
+    let inputDate = (<HTMLInputElement>document.getElementById("birthDateInput")||{}).value||"";
+    let todayDate = new Date().getFullYear();
+
+    let yearInputDate = inputDate.slice(0,4);
+    let parseYearInputDate : number = +yearInputDate;
+
+    let subtraction = todayDate-parseYearInputDate;
+
+    if((subtraction <= 17) || (subtraction >= 61)){
+      return { ans: true};
+    }
+    else{
+      return null;
+    }
   }
   firstName :FormControl = new FormControl('',[Validators.required, Validators.minLength(3), Validators.pattern(/^[ÁÉÍÓÚA-Z][a-záéíóú]*$/)]);
   lastName :FormControl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[ÁÉÍÓÚA-Z][a-záéíóú]*$/)]);
@@ -36,10 +53,11 @@ export class FormComponent implements  OnInit{
   address :FormControl = new FormControl('',[Validators.minLength(5), Validators.pattern(/^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)+(,\s[0-9]+)*$/)]);
   inlineRadioOptions :FormControl = new FormControl('');
   selectCountries :FormControl = new FormControl('', Validators.required);
-  birthDate :FormControl = new FormControl('', Validators.required);
+  birthDate :FormControl = new FormControl('', [this.validateBirthDate, Validators.required]);
   username :FormControl = new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(/^[a-zA-z-0-9]+[0-9]*$/)]);
   email :FormControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.email, Validators.pattern(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/)]);
   password :FormControl = new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]);
+
 
   registration:FormGroup = new FormGroup({
     firstName:this.firstName,
@@ -55,15 +73,13 @@ export class FormComponent implements  OnInit{
     password:this.password
   });
 
-  constructor(private informationService: InformationService){
+  constructor(private informationService: InformationService){};
 
-  };
-  ngOnInit(){
-  };
+  ngOnInit(){};
+
   onRegistration(){
     if(this.registration.valid){
       this.informationService.addInformation(this.registration.value);
-      console.log("INFO",this.registration.value)
       this.success();
       this.registration.reset();
     }
@@ -73,7 +89,7 @@ export class FormComponent implements  OnInit{
   }
   success(){
     Swal.fire(
-      'Send!',
+      'Send 📩',
       'Thanks!',
       'success'
     );

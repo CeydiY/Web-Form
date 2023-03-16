@@ -25,7 +25,7 @@ export class InformationService {
 
   constructor() {
     this.information = [];
-    this.information$ =  new BehaviorSubject<InformationForm[]>([]);;
+    this.information$ =  new BehaviorSubject<InformationForm[]>([]);
   }
 
   addInformation(iInfo: InformationForm){

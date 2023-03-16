@@ -1,36 +1,86 @@
-<div class="row mt-5 ml-2">
-  <table class="table">
-    <thead>
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Firstname</th>
-      <th scope="col">LastName</th>
-      <th scope="col">Name</th>
-      <th scope="col">Age</th>
-      <th scope="col">Address</th>
-      <th scope="col">Gender</th>
-      <th scope="col">Country</th>
-      <th scope="col">Birthdate</th>
-      <th scope="col">Username</th>
-      <th scope="col">Email</th>
-      <th scope="col">Password</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let data of arrInformation; index as i">
-      <th scope="row">{{i+1}}</th>
-      <td>{{data.firstName}}</td>
-      <td>{{data.lastName}}</td>
-      <td>{{data.name}}</td>
-      <td>{{data.age}}</td>
-      <td>{{data.address}}</td>
-      <td>{{data.inlineRadioOptions}}</td>
-      <td>{{data.selectCountries}}</td>
-      <td>{{data.birthDate}}</td>
-      <td>{{data.username}}</td>
-      <td>{{data.email}}</td>
-      <td>{{data.password}}</td>
-    </tr>
-    </tbody>
-  </table>
+<div class="row mt-3">
+  <h1 class="text-center">List of Users</h1>
 </div>
+<div class="search mt-3">
+  <form class="d-flex formSearch" role="search">
+    <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="searchInput"/>
+    <button class="btn btn-outline-info" type="button" (click)="filterList()">Search</button>
+  </form>
+</div>
+
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+    <div class="col-md-6">
+      <div class="well well-white mini-profile-widget" *ngFor="let data of listCustomer;">
+        <div class="col">
+          <div class="image-container" [ngSwitch]="data.inlineRadioOptions">
+            <div *ngSwitchCase="'Male'">
+              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar img-responsive" alt="avatar">
+            </div>
+            <div *ngSwitchCase="'Female'">
+              <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="avatar img-responsive" alt="avatar"></div>
+            <div *ngSwitchCase="'Other'">
+              <img src="assets/img/lumpy.png" class="avatar img-responsive" alt="avatar">
+            </div>
+          </div>
+        </div>
+        <div class="col mt-5 mb-5">
+          <div class="">
+            <h2 class="text-center">{{data.firstName}}&nbsp;{{data.lastName}}&nbsp;{{data.name}}</h2>
+            <hr>
+            <div class="details">
+              <div><strong>Age:&nbsp;</strong>{{data.age}}</div><br>
+              <div><strong>Address:&nbsp;</strong>{{data.address}}</div><br>
+              <div><strong>Gender:&nbsp;</strong>{{data.inlineRadioOptions}}</div><br>
+              <div><strong>Country: &nbsp;</strong>{{data.selectCountries}}</div><br>
+              <div><strong>Birthdate: &nbsp;</strong>{{data.birthDate}}</div><br>
+              <div><strong>Username: &nbsp;</strong>{{data.username}}</div><br>
+              <div><strong>Email: &nbsp;</strong>{{data.email}}</div><br>
+              <div><strong>Password: &nbsp;</strong>{{data.password}}</div><br>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--
+<div class="container">
+  <div class="row d-flex justify-content-center mt-5">
+    <table class="table">
+      <thead>
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Firstname</th>
+        <th scope="col">LastName</th>
+        <th scope="col">Name</th>
+        <th scope="col">Age</th>
+        <th scope="col">Address</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Country</th>
+        <th scope="col">Birthdate</th>
+        <th scope="col">Username</th>
+        <th scope="col">Email</th>
+        <th scope="col">Password</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let data of listCustomer; index as i">
+        <th scope="row">{{i+1}}</th>
+        <td>{{data.firstName}}</td>
+        <td>{{data.lastName}}</td>
+        <td>{{data.name}}</td>
+        <td>{{data.age}}</td>
+        <td>{{data.address}}</td>
+        <td>{{data.inlineRadioOptions}}</td>
+        <td>{{data.selectCountries}}</td>
+        <td>{{data.birthDate}}</td>
+        <td>{{data.username}}</td>
+        <td>{{data.email}}</td>
+        <td>*******</td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+-->
