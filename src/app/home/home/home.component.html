@@ -57,21 +57,24 @@
     </button>
   </div>
 </div>
-<div class="container">
-  <div class="row d-flex justify-content-center row-cols-1 row-cols-md-5 g-4 cards_home">
-    <ng-container *ngFor="let card of cards">
-      <div class="col mt-5">
-        <div class="card h-100">
-          <img src="{{card.img}}" class="card-img-top" alt="...">
-          <div class="card-body">
-            <h5 class="card-title">{{card.title}}</h5>
-            <p class="card-text">{{card.description}}</p>
-          </div>
-          <div class="card-footer">
-            <p class="text-warning h3">{{card.buttonText}}</p>
-          </div>
+<div class="container d-flex align-items-center justify-content-center flex-wrap">
+  <ng-container *ngFor="let card of cards">
+  <div class="box">
+    <div class="body">
+
+      <div class="imgContainer">
+        <img src="{{card.img}}" class="card-img-top" alt="...">
+      </div>
+      <div class="content d-flex flex-column align-items-center justify-content-center">
+        <div>
+          <h3 class="text-white fs-5">{{card.title}}</h3>
+          <p class="fs-6 text-white">{{card.description}}</p>
+          <p class="text-warning h3">{{card.buttonText}}</p>
         </div>
       </div>
-    </ng-container>
+
+    </div>
   </div>
+  </ng-container>
 </div>
+

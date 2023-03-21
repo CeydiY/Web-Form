@@ -20,20 +20,17 @@
   color: #454545;
 }
 .mini-profile-widget .image-container .avatar {
-  width: 180px;
-  height: 180px;
+  width: 200px;
+  height: 200px;
   display: block;
-  margin: 0 auto;
+  margin: 1em auto 0 auto;
   border-radius: 50%;
   background: white;
-  padding: 4px;
-  border: 1px solid #dddddd;
-}
-.avatar{
-  margin-top: 1em;
+  padding: 5px;
+  border: 1px solid black;
 }
 .details{
-  margin-left: 3em;
+  margin-left: 1.5em;
 }
 
 
