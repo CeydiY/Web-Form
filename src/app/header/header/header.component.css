@@ -1,12 +1,18 @@
 /* nav-bar */
 .navbar{
-  background-color: #EAEAEA;
-  color: black;
+  background-color: #3066BE;
   font-weight: bolder;
+  height: 6em;
 }
 .collapse ul{
-  font-size: 2vh;
+  font-size: 1.6em;
 }
 .navbar-brand{
   margin-left: 1em;
+}
+.navbar .nav-link{
+  color: white;
+}
+.navbar .nav-link:hover{
+  color: #AEECEF;
 }

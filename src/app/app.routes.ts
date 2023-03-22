@@ -7,7 +7,7 @@ const app_routes: Routes = [
   { path: 'home', component: HomeComponent},
   { path: 'form', component: FormComponent},
   { path: 'customer', component: CustomerComponent},
-  { path: '**', pathMatch: 'full', redirectTo: 'home'}
+  { path: '**', pathMatch: 'full', redirectTo: 'home'},
   ];
 
 export const app_routing = RouterModule.forRoot(app_routes);
