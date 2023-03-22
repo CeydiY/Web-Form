@@ -1,10 +1,10 @@
-<div class="row mt-3">
-  <h1 class="text-center">List of Users</h1>
+<div class="row mt-4">
+  <h1 class="text-center"><i class="fa-solid fa-users-line"></i>&nbsp;&nbsp;List of Users</h1>
 </div>
 <div class="search mt-3">
   <form class="d-flex formSearch" role="search">
-    <input class="form-control" type="text" placeholder="Search" aria-label="Search" id="searchInput"/>
-    <button class="btn btn-outline-info" type="button" (click)="filterList()">Search</button>
+    <input class="form-control" type="text" placeholder="Search user" aria-label="Search" id="searchInput"/>&nbsp;
+    <button class="btn btn-outline-dark" type="button" (click)="filterList()">Search</button>
   </form>
 </div>
 
@@ -36,7 +36,7 @@
               <div><strong>Birthdate: &nbsp;</strong>{{data.birthDate}}</div><br>
               <div><strong>Username: &nbsp;</strong>{{data.username}}</div><br>
               <div><strong>Email: &nbsp;</strong>{{data.email}}</div><br>
-              <div><strong>Password: &nbsp;</strong>{{data.password}}</div><br>
+              <div><strong>Password: &nbsp;</strong>********</div><br>
             </div>
           </div>
         </div>

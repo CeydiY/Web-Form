@@ -1,8 +1,14 @@
 .cards_home{
   margin-bottom: 6em;
 }
+.h1_title_carousel{
+  color: white;
+}
+.p_description_carousel{
+  background-color: white;
+}
 .fa-hippo{
-  color: rosybrown;
+  color: #119DA4;
 }
 .container .box{
   position: relative;
@@ -13,7 +19,6 @@
   perspective: 1000px;
   cursor: pointer;
 }
-
 .container .box .body{
   position: absolute;
   top: 0;
@@ -59,7 +64,7 @@
 .container .box .body .content div{
   transform-style: preserve-3d;
   padding: 20px;
-  background: linear-gradient(45deg, #FE0061,#FFEB3B);
+  background: linear-gradient(45deg, #3066BE,#80DED9);
   transform: translateZ(100px);
 }
 .container .box .body .content div h3{

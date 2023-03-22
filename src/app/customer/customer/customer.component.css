@@ -1,3 +1,6 @@
+.fa-users-line{
+color: #416788;
+}
 .search{
   position: center;
   margin: 0 auto;
@@ -16,8 +19,9 @@
   justify-content: center;
 }
 .well-white {
-  background-color: white;
-  color: #454545;
+  background-color: #3066BE;
+  color: white;
+  border-radius: 10%;
 }
 .mini-profile-widget .image-container .avatar {
   width: 200px;
@@ -25,7 +29,7 @@
   display: block;
   margin: 1em auto 0 auto;
   border-radius: 50%;
-  background: white;
+  background: #E8EBE4;
   padding: 5px;
   border: 1px solid black;
 }

@@ -1,8 +1,8 @@
 <div class="row mt-5">
-  <h1 class="text-center"><i class="fa-solid fa-hippo"></i>&nbsp;News movies</h1>
+  <h1 class="text-center"><i class="fa-solid fa-hippo"></i>&nbsp;New movies</h1>
 </div>
 
-<div class="row justify-content-center mt-5 mb-5">
+<div class="row justify-content-center mt-4 mb-5">
   <div id="carouselExampleDark" class="carousel carousel-dark slide col-sm-8" data-bs-ride="carousel">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -13,8 +13,8 @@
       <div class="carousel-item active" data-bs-interval="10000">
         <img src="assets/img/home/carrusel/movie01.jpg" class="rounded mx-auto d-block" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h1>UNCHARTED</h1>
-          <p class="text-justify">Uncharted is a 2022 American action-adventure film directed by
+          <h1 class="h1_title_carousel">UNCHARTED</h1>
+          <p class="text-justify p_description_carousel">Uncharted is a 2022 American action-adventure film directed by
             Ruben Fleischer from a screenplay by Rafe Lee Judkins, Art Marcum,
             and Matt Holloway, based on the video game franchise of the same name developed by
             Naughty Dog and published by Sony Interactive Entertainment. It stars Tom Holland as Nathan
@@ -27,8 +27,8 @@
       <div class="carousel-item" data-bs-interval="2000">
         <img src="assets/img/home/carrusel/movie02.png" class="rounded mx-auto d-block" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h1>AVATAR 2: THE WAY OF WATER</h1>
-          <p>Avatar: The Way of Water is a 2022 American epic science fiction film directed and produced
+          <h1 class="h1_title_carousel">AVATAR 2: THE WAY OF WATER</h1>
+          <p class="text-justify p_description_carousel">Avatar: The Way of Water is a 2022 American epic science fiction film directed and produced
             by James Cameron. He co-wrote the screenplay with Rick Jaffa and Amanda Silver from
             a story the trio wrote with Josh Friedman and Shane Salerno. Distributed by 20th Century Studios,
             it is the sequel to Avatar (2009) and the second installment in the Avatar film series. </p>
@@ -37,8 +37,8 @@
       <div class="carousel-item">
         <img src="assets/img/home/carrusel/movie03.png" class="rounded mx-auto d-block" alt="...">
         <div class="carousel-caption d-none d-md-block">
-          <h1>THE LOST CITY</h1>
-          <p>The Lost City is a 2022 American action-adventure comedy film directed
+          <h1 class="h1_title_carousel">THE LOST CITY</h1>
+          <p class="text-justify p_description_carousel">The Lost City is a 2022 American action-adventure comedy film directed
             by the Nee brothers, who co-wrote the screenplay with Oren
             Uziel and Dana Fox, from a story conceived by Seth Gordon.<br>
             It stars Sandra Bullock and Channing Tatum as a romance
@@ -57,6 +57,9 @@
     </button>
   </div>
 </div>
+<div class="row mt-5 mb-3">
+  <h1 class="text-center"><i class="fa-solid fa-hippo"></i>&nbsp;All movies</h1>
+</div>
 <div class="container d-flex align-items-center justify-content-center flex-wrap">
   <ng-container *ngFor="let card of cards">
   <div class="box">
@@ -67,9 +70,9 @@
       </div>
       <div class="content d-flex flex-column align-items-center justify-content-center">
         <div>
-          <h3 class="text-white fs-5">{{card.title}}</h3>
+          <p class="text-white fs-3">{{card.title}}</p>
           <p class="fs-6 text-white">{{card.description}}</p>
-          <p class="text-warning h3">{{card.buttonText}}</p>
+          <p class="text-warning h2">{{card.buttonText}}</p>
         </div>
       </div>
 
