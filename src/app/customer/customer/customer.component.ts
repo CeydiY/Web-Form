@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import {InformationForm, InformationService} from "../../information.service";
+import { InformationService} from "../../information.service";
+import { InformationForm} from "../../Interfaces/InformationForm";
 import {BehaviorSubject, Observable} from "rxjs";
 
 @Component({

@@ -1,27 +1,18 @@
 import { Injectable } from '@angular/core';
-import {BehaviorSubject, Observable, Subject} from "rxjs";
+import { BehaviorSubject, Observable, Subject } from "rxjs";
+import { InformationForm } from "./Interfaces/InformationForm";
 
-export interface InformationForm{
-  firstName:string,
-  lastName:string,
-  name:string,
-  age:number,
-  address:string,
-  inlineRadioOptions:any,
-  selectCountries:any,
-  birthDate:string,
-  username:string,
-  email:string,
-  password:string
-}
 @Injectable({
   providedIn: 'root'
 })
 export class InformationService {
-
   private information: InformationForm[];
   /*Con el subject comunica que ha pasado.*/
   private information$: Subject<InformationForm[]>;
+
+  private urlLocal = "/clients"
+
+
 
   constructor() {
     this.information = [];
