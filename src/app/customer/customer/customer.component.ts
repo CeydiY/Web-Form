@@ -1,8 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { InformationService} from "../../information.service";
-import { InformationForm} from "../../Interfaces/InformationForm";
+import { ClientService} from "../../client.service";
+import { Client} from "../../Interfaces/Client";
 import {BehaviorSubject, Observable} from "rxjs";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-customer',
@@ -10,17 +11,46 @@ import {BehaviorSubject, Observable} from "rxjs";
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit{
-  arrInformation: InformationForm[] =[];
-  listCustomer: InformationForm[] = [];
+  arrInformation: Client[] =[];
+  listCustomer: Client[] = [];
   index:number = 99;
 
-  constructor(private informationService: InformationService) {
+  constructor(private clientService: ClientService) {
   }
   ngOnInit():void{
-    this.informationService.getInformation$().subscribe(information =>{
-      this.arrInformation = information;
-    })
+    this.listClients();
+
   }
+  listClients(){
+    this.clientService.getClients().subscribe(
+      (response)=>{
+        this.listCustomer = response;
+      },
+      (error: HttpErrorResponse) =>{
+        alert(error.message)
+      }
+    )
+  }
+  editClient(id: number){
+    this.clientService.getClientId(id).subscribe(
+      (response)=>{
+        this.listCustomer = response;
+      },(error: HttpErrorResponse) =>{
+        alert(error.message)
+      }
+    )
+  }
+
+  deleteClient(id: number){
+    this.clientService.deleteClient(id).subscribe(
+      (response)=>{
+        this.ngOnInit();
+      },(error: HttpErrorResponse) =>{
+      alert(error.message)
+    }
+    )
+  }
+
   filterList(){
     let nickname = (<HTMLInputElement>document.getElementById("searchInput")).value;
 

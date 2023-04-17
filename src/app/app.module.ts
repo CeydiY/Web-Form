@@ -9,7 +9,8 @@ import { FormComponent } from './form/form/form.component';
 import { CustomerComponent } from './customer/customer/customer.component';
 import { HomeComponent } from './home/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { InformationService } from "./information.service";
+import { ClientService } from "./client.service";
+import {HttpClient, HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -25,9 +26,10 @@ import { InformationService } from "./information.service";
     BrowserModule,
     app_routing,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
-  providers: [InformationService],
+  providers: [ClientService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

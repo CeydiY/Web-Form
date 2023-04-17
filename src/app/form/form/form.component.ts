@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {FormControl, FormGroup, ValidatorFn, Validators} from "@angular/forms";
+import {FormControl, FormGroup, NgForm, Validators} from "@angular/forms";
 import Swal from 'sweetalert2';
-import {InformationService} from "../../information.service";
+import {ClientService} from "../../client.service";
+import {Client} from "../../Interfaces/Client";
+import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
   selector: 'app-form',
@@ -57,9 +59,10 @@ export class FormComponent implements  OnInit{
   username :FormControl = new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(/^[a-zA-z-0-9]+[0-9]*$/)]);
   email :FormControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.email, Validators.pattern(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/)]);
   password :FormControl = new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]);
-
+  id:FormControl = new FormControl();
 
   registration:FormGroup = new FormGroup({
+    id:this.id,
     firstName:this.firstName,
     lastName:this.lastName,
     name:this.name,
@@ -73,20 +76,35 @@ export class FormComponent implements  OnInit{
     password:this.password
   });
 
-  constructor(private informationService: InformationService){};
+  constructor(private clientService: ClientService){};
 
-  ngOnInit(){};
+  ngOnInit(){
 
+  };
+
+addClientForm(){
+  this.clientService.addClient(this.registration.value).subscribe(
+    (response: Client)=>{
+    },
+    (error: HttpErrorResponse) =>{
+      alert(error.message)
+    }
+
+  )
+}
   onRegistration(){
     if(this.registration.valid){
-      this.informationService.addInformation(this.registration.value);
+      this.addClientForm();
+      console.log(this.registration.value)
       this.success();
       this.registration.reset();
     }
+
   };
   resetForm(){
     this.registration.reset();
   }
+
   success(){
     Swal.fire(
       'Send 📩',
