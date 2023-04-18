@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ClientService} from "../../client.service";
 import { Client} from "../../Interfaces/Client";
-import {BehaviorSubject, Observable} from "rxjs";
 import {HttpErrorResponse} from "@angular/common/http";
 
 @Component({
@@ -13,6 +11,8 @@ import {HttpErrorResponse} from "@angular/common/http";
 export class CustomerComponent implements OnInit{
   arrInformation: Client[] =[];
   listCustomer: Client[] = [];
+  modifyClient: Client | undefined;
+
   index:number = 99;
 
   constructor(private clientService: ClientService) {
@@ -31,15 +31,6 @@ export class CustomerComponent implements OnInit{
       }
     )
   }
-  editClient(id: number){
-    this.clientService.getClientId(id).subscribe(
-      (response)=>{
-        this.listCustomer = response;
-      },(error: HttpErrorResponse) =>{
-        alert(error.message)
-      }
-    )
-  }
 
   deleteClient(id: number){
     this.clientService.deleteClient(id).subscribe(
@@ -50,6 +41,18 @@ export class CustomerComponent implements OnInit{
     }
     )
   }
+  editClient(client : Client, id: number){
+    this.clientService.updateClient(id,client).subscribe(
+      (response: Client) => {
+        console.log(response);
+        this.listClients();
+      },
+      (error: HttpErrorResponse) => {
+        alert(error.message);
+      }
+    );
+  }
+
 
   filterList(){
     let nickname = (<HTMLInputElement>document.getElementById("searchInput")).value;

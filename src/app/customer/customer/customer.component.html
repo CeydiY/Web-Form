@@ -39,7 +39,8 @@
               <div><strong>Password: &nbsp;</strong>********</div><br>
               <div>
                 <strong>Actions:&nbsp;</strong>
-                <button class="btn btn-warning" type="button" (click)="editClient(data.id)">Modify</button>&nbsp;
+                <a  [routerLink]="['modal']"></a>
+                <button class="btn btn-warning" type="button" ><i class="fa fa-pencil"></i>&nbsp;Modify</button>&nbsp;
                 <button class="btn btn-danger" type="button" (click)="deleteClient(data.id)">Delete</button>
               </div><br>
             </div>
@@ -49,6 +50,7 @@
     </div>
   </div>
 </div>
+<app-modal></app-modal>
 <!--
 <div class="container">
   <div class="row d-flex justify-content-center mt-5">
