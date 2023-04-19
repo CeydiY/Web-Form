@@ -11,6 +11,7 @@ import { HomeComponent } from './home/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientService } from "./client.service";
 import {HttpClient, HttpClientModule} from '@angular/common/http';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import {HttpClient, HttpClientModule} from '@angular/common/http';
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
+    NgbModule,
   ],
   providers: [ClientService],
   bootstrap: [AppComponent]

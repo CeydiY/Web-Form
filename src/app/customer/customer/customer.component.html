@@ -7,155 +7,43 @@
     <button class="btn btn-outline-dark" type="button" (click)="filterList()">Search</button>
   </form>
 </div>
-
-<div class="container">
-  <div class="row d-flex justify-content-center mt-5">
-    <div class="col-md-6">
-      <div class="well well-white mini-profile-widget" *ngFor="let data of listCustomer;">
-        <div class="col">
-          <div class="image-container mt-3" [ngSwitch]="data.inlineRadioOptions">
-            <div *ngSwitchCase="'Male'">
-              <img src="https://bootdey.com/img/Content/avatar/avatar7.png" class="avatar img-responsive" alt="avatar">
-            </div>
-            <div *ngSwitchCase="'Female'">
-              <img src="https://bootdey.com/img/Content/avatar/avatar3.png" class="avatar img-responsive" alt="avatar"></div>
-            <div *ngSwitchCase="'Other'">
-              <img src="assets/img/lumpy.png" class="avatar img-responsive" alt="avatar">
-            </div>
-          </div>
-        </div>
-        <div class="col mt-5 mb-5">
-          <div class="">
-            <h2 class="text-center">{{data.firstName}}&nbsp;{{data.lastName}}&nbsp;{{data.name}}</h2>
-            <hr>
-            <div class="details">
-              <div><strong>Age:&nbsp;</strong>{{data.age}}</div><br>
-              <div><strong>Address:&nbsp;</strong>{{data.address}}</div><br>
-              <div><strong>Gender:&nbsp;</strong>{{data.inlineRadioOptions}}</div><br>
-              <div><strong>Country: &nbsp;</strong>{{data.selectCountries}}</div><br>
-              <div><strong>Birthdate: &nbsp;</strong>{{data.birthDate}}</div><br>
-              <div><strong>Username: &nbsp;</strong>{{data.username}}</div><br>
-              <div><strong>Email: &nbsp;</strong>{{data.email}}</div><br>
-              <div><strong>Password: &nbsp;</strong>********</div><br>
-              <div>
-                <strong>Actions:&nbsp;</strong>
-                <button class="btn btn-warning" type="button" ><i class="fa fa-pencil"></i>&nbsp;Modify</button>&nbsp;
-                <button class="btn btn-danger" type="button" (click)="deleteClient(data.id)">Delete</button>
-              </div><br>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<div class="container">
+<div class="container mt-4">
   <div class="row">
-    <div class="col-md-6 col-xl-3">
-      <div class="card m-b-30">
+    <div class="col-md-6 col-xl-4" *ngFor="let data of listCustomer;">
+      <div class="card m-b-30" style="height: 500px">
         <div class="card-body row">
           <div class="col-6">
-            <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="" class="img-fluid rounded-circle w-60"></a>
+            <div [ngSwitch]="data.gender">
+              <div *ngSwitchCase="'M'">
+                <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="avatar" class="img-fluid rounded-circle w-80">
+              </div>
+              <div *ngSwitchCase="'F'">
+                <img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="avatar" class="img-fluid rounded-circle w-80">
+              </div>
+              <div *ngSwitchCase="'O'">
+                <img src="assets/img/lumpy.png" alt="avatar" class="img-fluid rounded-circle w-65">
+              </div>
+            </div>
           </div>
-          <div class="col-6 card-title align-self-center mb-0">
-            <h5>Emma A. Main</h5>
-            <p class="m-0">Graphics Designer</p>
+          <div class="col-6 card-title mb-0">
+            <h5>{{data.firstName}}&nbsp;{{data.lastName}}<br>{{data.name}}</h5>
+            <p class="m-0"><strong>Age:&nbsp;</strong>{{data.age}}</p>
+            <p class="m-0"><strong>Birthdate: &nbsp;</strong>{{data.birthdate}}</p>
+            <p class="m-0"><strong>Gender: &nbsp;</strong>{{data.gender}}</p>
           </div>
         </div>
         <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : <a href="#">PaulGoyette@gmail.com</a></li>
-          <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : 000 123-456</li>
+          <li class="list-group-item"><i class="fa-solid fa-user float-right"></i>&nbsp;Username: {{data.username}}</li>
+          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>&nbsp;Email: {{data.email}}</li>
+          <li class="list-group-item"><i class="fa-solid fa-address-book float-right"></i>&nbsp;Country: {{data.country}}</li>
+          <li class="list-group-item"><i class="fa-solid fa-address-book float-right"></i>&nbsp;Address: {{data.address}}</li>
         </ul>
         <div class="card-body">
           <div class="float-right btn-group btn-group-sm">
-            <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-            <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+            <a href="#" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
           </div>
-          <ul class="social-links list-inline mb-0">
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-xl-3">
-      <div class="card m-b-30">
-        <div class="card-body row">
-          <div class="col-6">
-            <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar6.png" alt="" class="img-fluid rounded-circle w-60"></a>
-          </div>
-          <div class="col-6 card-title align-self-center mb-0">
-            <h5>Paul L. Goyette</h5>
-            <p class="m-0">Graphics Designer</p>
-          </div>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : <a href="#">PaulGoyette@gmail.com</a></li>
-          <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : 000 123-456</li>
-        </ul>
-        <div class="card-body">
-          <div class="float-right btn-group btn-group-sm">
-            <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-            <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
-          </div>
-          <ul class="social-links list-inline mb-0">
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-xl-3">
-      <div class="card m-b-30">
-        <div class="card-body row">
-          <div class="col-6">
-            <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar5.png" alt="" class="img-fluid rounded-circle w-60"></a>
-          </div>
-          <div class="col-6 card-title align-self-center mb-0">
-            <h5>Jonathan Smith</h5>
-            <p class="m-0">Graphics Designer</p>
-          </div>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : <a href="#">PaulGoyette@gmail.com</a></li>
-          <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : 000 123-456</li>
-        </ul>
-        <div class="card-body">
-          <div class="float-right btn-group btn-group-sm">
-            <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-            <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
-          </div>
-          <ul class="social-links list-inline mb-0">
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
-            <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
-          </ul>
-        </div>
-      </div>
-    </div>
-    <div class="col-md-6 col-xl-3">
-      <div class="card m-b-30">
-        <div class="card-body row">
-          <div class="col-6">
-            <a href=""><img src="https://bootdey.com/img/Content/avatar/avatar3.png" alt="" class="img-fluid rounded-circle w-60"></a>
-          </div>
-          <div class="col-6 card-title align-self-center mb-0">
-            <h5>Lily J. Ford</h5>
-            <p class="m-0">Graphics Designer</p>
-          </div>
-        </div>
-        <ul class="list-group list-group-flush">
-          <li class="list-group-item"><i class="fa fa-envelope float-right"></i>Email : <a href="#">PaulGoyette@gmail.com</a></li>
-          <li class="list-group-item"><i class="fa fa-phone float-right"></i>Phone : 000 123-456</li>
-        </ul>
-        <div class="card-body">
-          <div class="float-right btn-group btn-group-sm">
-            <a href="#" class="btn btn-primary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i> </a>
-            <a href="#" class="btn btn-secondary tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
-          </div>
-          <ul class="social-links list-inline mb-0">
+          <ul class="social-links list-inline mb-0 mt-3">
             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Twitter"><i class="fa fa-twitter"></i></a></li>
             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Skype"><i class="fa fa-skype"></i></a></li>
@@ -165,43 +53,3 @@
     </div>
   </div>
 </div>
-<!--
-<div class="container">
-  <div class="row d-flex justify-content-center mt-5">
-    <table class="table">
-      <thead>
-      <tr>
-        <th scope="col">#</th>
-        <th scope="col">Firstname</th>
-        <th scope="col">LastName</th>
-        <th scope="col">Name</th>
-        <th scope="col">Age</th>
-        <th scope="col">Address</th>
-        <th scope="col">Gender</th>
-        <th scope="col">Country</th>
-        <th scope="col">Birthdate</th>
-        <th scope="col">Username</th>
-        <th scope="col">Email</th>
-        <th scope="col">Password</th>
-      </tr>
-      </thead>
-      <tbody>
-      <tr *ngFor="let data of listCustomer; index as i">
-        <th scope="row">{{i+1}}</th>
-        <td>{{data.firstName}}</td>
-        <td>{{data.lastName}}</td>
-        <td>{{data.name}}</td>
-        <td>{{data.age}}</td>
-        <td>{{data.address}}</td>
-        <td>{{data.inlineRadioOptions}}</td>
-        <td>{{data.selectCountries}}</td>
-        <td>{{data.birthDate}}</td>
-        <td>{{data.username}}</td>
-        <td>{{data.email}}</td>
-        <td>*******</td>
-      </tr>
-      </tbody>
-    </table>
-  </div>
-</div>
--->

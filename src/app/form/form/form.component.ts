@@ -11,7 +11,7 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./form.component.css']
 })
 export class FormComponent implements  OnInit{
-  countries = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria",
+  countriesList = ["Afghanistan","Albania","Algeria","Andorra","Angola","Anguilla","Antigua &amp; Barbuda","Argentina","Armenia","Aruba","Australia","Austria",
     "Azerbaijan","Bahamas","Bahrain","Bangladesh","Barbados","Belarus","Belgium","Belize","Benin","Bermuda","Bhutan","Bolivia","Bosnia &amp; Herzegovina",
     "Botswana","Brazil","British Virgin Islands","Brunei","Bulgaria","Burkina Faso","Burundi","Cambodia","Cameroon","Cape Verde","Cayman Islands","Chad","Chile",
     "China","Colombia","Congo","Cook Islands","Costa Rica","Cote D Ivoire","Croatia","Cruise Ship","Cuba","Cyprus","Czech Republic","Denmark","Djibouti",
@@ -53,24 +53,22 @@ export class FormComponent implements  OnInit{
   name :FormControl = new FormControl('', [Validators.required, Validators.minLength(3), Validators.pattern(/^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)*$/)]);
   age :FormControl = new FormControl('', [Validators.required, Validators.pattern(/^(?:1[8-9]|[2-5][0-9]|60)$/)]);
   address :FormControl = new FormControl('',[Validators.minLength(5), Validators.pattern(/^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)+(,\s[0-9]+)*$/)]);
-  inlineRadioOptions :FormControl = new FormControl('');
-  selectCountries :FormControl = new FormControl('', Validators.required);
-  birthDate :FormControl = new FormControl('', [this.validateBirthDate, Validators.required]);
+  gender :FormControl = new FormControl('');
+  countries :FormControl = new FormControl('', Validators.required);
+  birthdate :FormControl = new FormControl('', [this.validateBirthDate, Validators.required]);
   username :FormControl = new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(/^[a-zA-z-0-9]+[0-9]*$/)]);
   email :FormControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.email, Validators.pattern(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/)]);
   password :FormControl = new FormControl('', [Validators.required, Validators.pattern(/^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$/)]);
-  id:FormControl = new FormControl();
 
   registration:FormGroup = new FormGroup({
-    id:this.id,
     firstName:this.firstName,
     lastName:this.lastName,
     name:this.name,
     age:this.age,
     address:this.address,
-    inlineRadioOptions:this.inlineRadioOptions,
-    selectCountries:this.selectCountries,
-    birthDate:this.birthDate,
+    gender:this.gender,
+    countries:this.countries,
+    birthdate:this.birthdate,
     username:this.username,
     email:this.email,
     password:this.password
