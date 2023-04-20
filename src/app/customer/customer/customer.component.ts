@@ -30,9 +30,11 @@ export class CustomerComponent implements OnInit{
       }
     )
   }
+
   openModel(client: Client, mode :string): void{
-    const container = (<HTMLFormElement>document.getElementById('main-container'));
+    const container = document.getElementById('main-container');
     const button = document.createElement('button');
+
     button.type = 'button';
     button.style.display = 'none';
     button.setAttribute('data-bs-toggle', 'modal')
