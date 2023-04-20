@@ -1,13 +1,12 @@
 export interface Client {
-  id:number,
   firstName:string,
   lastName:string,
   name:string,
   age:number,
   address:string,
-  inlineRadioOptions:any,
-  selectCountries:any,
-  birthDate:string,
+  gender:string,
+  country:string,
+  birthdate:string,
   username:string,
   email:string,
   password:string

@@ -16,7 +16,7 @@ export class ClientService {
     return this.http.get<Client[]>(this.urlLocal);
   }
 
-  getClientId(id: number):Observable<any>{
+  getClientId(id: string):Observable<any>{
     return this.http.get(this.urlLocal+'/'+id);
   }
 
@@ -24,11 +24,12 @@ export class ClientService {
     return this.http.post<Client>(this.urlLocal, client);
   }
 
-  updateClient(id: number, client: Client):Observable<Client>{
-    return this.http.put<Client>(this.urlLocal+'/'+id,client);
+  updateClient(client: Client, username: string):Observable<Client>{
+    console.log(client.username);
+    return this.http.put<Client>(this.urlLocal+'/'+username,client);
   }
 
-  deleteClient(id: number):Observable<any>{
+  deleteClient(id: string):Observable<any>{
     return this.http.delete(this.urlLocal+'/'+id);
   }
 }

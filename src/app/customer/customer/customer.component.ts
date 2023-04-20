@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { ClientService} from "../../client.service";
 import { Client} from "../../Interfaces/Client";
 import {HttpErrorResponse} from "@angular/common/http";
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-customer',
@@ -9,13 +10,11 @@ import {HttpErrorResponse} from "@angular/common/http";
   styleUrls: ['./customer.component.css']
 })
 export class CustomerComponent implements OnInit{
-  arrInformation: Client[] =[];
   listCustomer: Client[] = [];
-  modifyClient: Client | undefined;
+  modifyClient: Client;
+  deleClient: Client;
 
-  index:number = 99;
-
-  constructor(private clientService: ClientService) {
+  constructor(private clientService: ClientService, public modalService: NgbModal) {
   }
   ngOnInit():void{
     this.listClients();
@@ -23,7 +22,7 @@ export class CustomerComponent implements OnInit{
   }
   listClients(){
     this.clientService.getClients().subscribe(
-      (response)=>{
+      (response: Client[])=>{
         this.listCustomer = response;
       },
       (error: HttpErrorResponse) =>{
@@ -31,18 +30,29 @@ export class CustomerComponent implements OnInit{
       }
     )
   }
+  openModel(client: Client, mode :string): void{
+    const container = (<HTMLFormElement>document.getElementById('main-container'));
+    const button = document.createElement('button');
+    button.type = 'button';
+    button.style.display = 'none';
+    button.setAttribute('data-bs-toggle', 'modal')
 
-  deleteClient(id: number){
-    this.clientService.deleteClient(id).subscribe(
-      (response)=>{
-        this.ngOnInit();
-      },(error: HttpErrorResponse) =>{
-      alert(error.message)
+    if(mode === 'edit'){
+      this.modifyClient = client;
+      button.setAttribute('data-bs-target', '#updateClientModal')
     }
-    )
+    if(mode === 'delete'){
+      this.deleClient = client;
+      button.setAttribute('data-bs-target', '#deleteClientModal')
+    }
+    container.appendChild(button);
+    button.click();
+
+    this.modalService.open(button);
   }
-  editClient(client : Client, id: number){
-    this.clientService.updateClient(id,client).subscribe(
+
+  editClient(client : Client, id: string){
+    this.clientService.updateClient(client, id).subscribe(
       (response: Client) => {
         console.log(response);
         this.listClients();
@@ -52,18 +62,39 @@ export class CustomerComponent implements OnInit{
       }
     );
   }
+  onUpdateClient(client : Client, id: string){
+    this.clientService.updateClient(client, id).subscribe(
+      (response: Client) => {
+        this.listClients();
+      }
+      ,(error: HttpErrorResponse) =>{
+        alert(error.message)
+      }
+    )
+  }
+  deleteClient(id: string){
+    this.clientService.deleteClient(id).subscribe(
+      (response)=>{
+        this.ngOnInit();
+      },(error: HttpErrorResponse) =>{
+        alert(error.message)
+      }
+    )
+  }
 
-
-  filterList(){
-    let nickname = (<HTMLInputElement>document.getElementById("searchInput")).value;
-
-    this.index = this.arrInformation.findIndex(customer => customer.username == nickname);
-    if(this.index == -1){
-      this.listCustomer.pop();
-      return;
+  filterList(key: string) {
+    const results: Client[] = [];
+    for (const client of this.listCustomer) {
+      if (client.name.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || client.firstName.toLowerCase().indexOf(key.toLowerCase()) !== -1
+        || client.lastName.toLowerCase().indexOf(key.toLowerCase()) !== -1){
+        results.push(client);
+      }
     }
-    else{
-      this.listCustomer[0] = this.arrInformation[this.index];
+    this.listCustomer = results;
+    if (results.length === 0 || !key) {
+      this.listClients();
     }
+
   }
 }
