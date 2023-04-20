@@ -7,7 +7,7 @@
     <button class="btn btn-outline-dark" type="button" (click)="filterList()">Search</button>
   </form>
 </div>
-<div class="container mt-4">
+<div class="container mt-4" id="main-container">
   <div class="row">
     <div class="col-md-6 col-xl-4" *ngFor="let data of listCustomer;">
       <div class="card m-b-30" style="height: 500px">
@@ -40,8 +40,8 @@
         </ul>
         <div class="card-footer">
           <div class="float-end btn-group btn-group-sm">
-            <a href="#" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete"><i class="fa fa-times"></i></a>
+            <a href="#" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="openModel(data, 'edit')"><i class="fa fa-pencil"></i></a>
+            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" (click)="openModel(data, 'delete')"><i class="fa fa-times"></i></a>
           </div>
           <ul class="social-links list-inline float-start mb-0">
             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
@@ -59,7 +59,33 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLabel">Edit Employee</h5>
+        <h5 class="modal-title" id="clientEditModalLabel">Edit Employee</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <form #editForm="ngForm">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" ngModel="{{modifyClient?.name}}" name="name" class="form-control" id="name">
+          </div>
+        </form>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <button (click)="onUpdateClient(editForm.value)" type="button" class="btn btn-primary">Save changes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- delete modal -->
+<div class="modal fade" id="deleteClientModal" tabindex="-1" role="dialog" aria-labelledby="clientDeleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="clientDeleteModalLabel">Delete Employee</h5>
         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
           <span aria-hidden="true">&times;</span>
         </button>

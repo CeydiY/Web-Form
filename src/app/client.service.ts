@@ -24,8 +24,8 @@ export class ClientService {
     return this.http.post<Client>(this.urlLocal, client);
   }
 
-  updateClient(id: number, client: Client):Observable<Client>{
-    return this.http.put<Client>(this.urlLocal+'/'+id,client);
+  updateClient(client: Client):Observable<Client>{
+    return this.http.put<Client>(this.urlLocal+'/',client);
   }
 
   deleteClient(id: number):Observable<any>{
