@@ -54,7 +54,7 @@ export class FormComponent implements  OnInit{
   age :FormControl = new FormControl('', [Validators.required, Validators.pattern(/^(?:1[8-9]|[2-5][0-9]|60)$/)]);
   address :FormControl = new FormControl('',[Validators.minLength(5), Validators.pattern(/^[ÁÉÍÓÚA-Z][a-záéíóú]+(\s+[ÁÉÍÓÚA-Z]?[a-záéíóú]+)+(,\s[0-9]+)*$/)]);
   gender :FormControl = new FormControl('');
-  countries :FormControl = new FormControl('', Validators.required);
+  country :FormControl = new FormControl('', Validators.required);
   birthdate :FormControl = new FormControl('', [this.validateBirthDate, Validators.required]);
   username :FormControl = new FormControl('', [Validators.required, Validators.minLength(5), Validators.pattern(/^[a-zA-z-0-9]+[0-9]*$/)]);
   email :FormControl = new FormControl('', [Validators.required, Validators.minLength(6), Validators.email, Validators.pattern(/^\w+([.-_+]?\w+)*@\w+([.-]?\w+)*(\.\w{2,10})+$/)]);
@@ -67,7 +67,7 @@ export class FormComponent implements  OnInit{
     age:this.age,
     address:this.address,
     gender:this.gender,
-    countries:this.countries,
+    country:this.country,
     birthdate:this.birthdate,
     username:this.username,
     email:this.email,
@@ -85,7 +85,7 @@ addClientForm(){
     (response: Client)=>{
     },
     (error: HttpErrorResponse) =>{
-      alert(error.message)
+      console.log(error.headers)
     }
 
   )

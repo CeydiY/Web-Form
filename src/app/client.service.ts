@@ -7,12 +7,13 @@ import {HttpClient} from "@angular/common/http";
   providedIn: 'root'
 })
 export class ClientService {
-  private urlLocal = "/dataclient"
+  private urlLocal = "/api/v1/clients"
+  private token: string = "Bearer 1|mMX3hXGX5CxonPekaiGkCNvhsrWmqHoL709noJBb"
 
   constructor(private http: HttpClient) {
   }
 
-  getClients():Observable<Client[]>{
+  getClients():Observable<any>{
     return this.http.get<Client[]>(this.urlLocal);
   }
 
@@ -25,7 +26,6 @@ export class ClientService {
   }
 
   updateClient(client: Client, username: string):Observable<Client>{
-    console.log(client.username);
     return this.http.put<Client>(this.urlLocal+'/'+username,client);
   }
 

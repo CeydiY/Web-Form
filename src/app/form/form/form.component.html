@@ -122,14 +122,14 @@
                     </div>
                     <div class="row mb-5">
                       <div class="col">
-                        <select class="form-select" formControlName="countries" required>
+                        <select class="form-select" formControlName="country" required>
                           <option value="" disabled selected>Country</option>
-                          <ng-container *ngFor="let country of countriesList; index as i ">
-                            <option value="{{country}}">{{country}}</option>
+                          <ng-container *ngFor="let countries of countriesList; index as i ">
+                            <option value="{{countries}}">{{countries}}</option>
                           </ng-container>
                         </select>
-                        <div *ngIf="countries.invalid && (countries.dirty || countries.touched)" class="alert">
-                          <div *ngIf="countries.errors?.['required']">
+                        <div *ngIf="country.invalid && (country.dirty || country.touched)" class="alert">
+                          <div *ngIf="country.errors?.['required']">
                             <p class="text-danger">Select a country.</p>
                           </div>
                         </div>

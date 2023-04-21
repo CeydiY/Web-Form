@@ -23,8 +23,8 @@ export class CustomerComponent implements OnInit{
   }
   listClients(){
     this.clientService.getClients().subscribe(
-      (response: Client[])=>{
-        this.listCustomer = response;
+      (response)=>{
+        this.listCustomer = response.data;
       },
       (error: HttpErrorResponse) =>{
         alert(error.message)

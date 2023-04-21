@@ -10,8 +10,9 @@ import { CustomerComponent } from './customer/customer/customer.component';
 import { HomeComponent } from './home/home/home.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ClientService } from "./client.service";
-import {HttpClient, HttpClientModule} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { TokeInterceptorService } from "./toke-interceptor-service.service";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,11 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [ClientService, NgbModule],
+  providers: [ClientService, NgbModule, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: TokeInterceptorService,
+    multi: true,
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

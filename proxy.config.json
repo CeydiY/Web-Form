@@ -1,7 +1,7 @@
 {
-  "/dataclient/*": {
-    "target":"http://localhost:8080",
-    "secure": false,
+  "/api/v1/clients/*": {
+    "target":"http://127.0.0.1:8000",
+    "secure": true,
     "loglevel": "debug"
   }
 }
