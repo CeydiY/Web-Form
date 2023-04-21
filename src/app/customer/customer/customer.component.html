@@ -9,7 +9,7 @@
 </div>
 <div class="container mt-4" id="main-container">
   <div class="row">
-    <div class="col-md-6 col-xl-4" *ngFor="let data of listCustomer;">
+    <div class="col-md-6 col-xl-5" *ngFor="let data of listCustomer;">
       <div class="card m-b-30" style="height: 450px; width: 450px">
         <div class="card-body row">
           <div class="col-6">
@@ -40,8 +40,8 @@
         </ul>
         <div class="card-footer">
           <div class="float-end btn-group btn-group-sm">
-            <a href="#" class="btn btn-warning tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Edit" (click)="openModel(data, 'edit')"><i class="fa fa-pencil"></i></a>
-            <a href="#" class="btn btn-danger tooltips" data-placement="top" data-toggle="tooltip" data-original-title="Delete" (click)="openModel(data, 'delete')"><i class="fa fa-times"></i></a>
+            <button class="btn btn-lg btn btn-warning" (click)="open(modifyModal,'edit', data)"><i class="fa fa-pencil"></i></button>
+            <button class="btn btn-lg btn btn-danger" (click)="open(deleteModal,'delete', data)"><i class="fa fa-times"></i></button>
           </div>
           <ul class="social-links list-inline float-start mb-0">
             <li class="list-inline-item"><a title="" data-placement="top" data-toggle="tooltip" class="tooltips" href="" data-original-title="Facebook"><i class="fa fa-facebook-f"></i></a></li>
@@ -53,70 +53,61 @@
     </div>
   </div>
 </div>
-
 <!-- edit modal -->
-<div class="modal fade" id="updateClientModal" tabindex="-1" role="dialog" aria-labelledby="clientEditModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="clientEditModalLabel">Edit Employee</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <form #editForm="ngForm">
-          <div class="form-outline mb-4">
-            <label for="name">Name</label>
-            <input type="text" ngModel="{{modifyClient?.name}}" name="name" class="form-control" id="name" required>
-          </div>
-          <div class="form-outline mb-4">
-            <label for="lastName">First name</label>
-            <input type="text" ngModel="{{modifyClient?.firstName}}" name="firstName" class="form-control" id="firstname" required>
-          </div>
-          <div class="form-outline mb-4">
-            <label for="lastName">First name</label>
-            <input type="text" ngModel="{{modifyClient?.lastName}}" name="lastName" class="form-control" id="lastName" required>
-          </div>
-          <div class="form-outline mb-4">
-            <label for="lastName">Address</label>
-            <input type="text" ngModel="{{modifyClient?.address}}" name="address" class="form-control" id="address" required>
-          </div>
-        </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button (click)="onUpdateClient(editForm.value,modifyClient.username)" type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
+<ng-template #modifyModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title">Edit User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <form #editForm="ngForm">
+      <div class="form-outline mb-4">
+        <label for="name">Name</label>
+        <input type="text" ngModel="{{modifyClient?.name}}" name="name" class="form-control" id="name" required>
+      </div>
+      <div class="form-outline mb-4">
+        <label for="lastName">First name</label>
+        <input type="text" ngModel="{{modifyClient?.firstName}}" name="firstName" class="form-control" id="firstname" required>
+      </div>
+      <div class="form-outline mb-4">
+        <label for="lastName">First name</label>
+        <input type="text" ngModel="{{modifyClient?.lastName}}" name="lastName" class="form-control" id="lastName" required>
+      </div>
+      <div class="form-outline mb-4">
+        <label for="lastName">Address</label>
+        <input type="text" ngModel="{{modifyClient?.address}}" name="address" class="form-control" id="address" required>
+      </div>
+    </form>
+  </div>
+  <div class="modal-footer">
+    <button  type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Cancel</button>
+    <button (click)="onUpdateClient(editForm.value,modifyClient.username); modal.close('Save click')" type="button" class="btn btn-primary">Save changes</button>
+  </div>
+</ng-template>
 
 <!-- delete modal -->
-<div class="modal fade" id="deleteClientModal" tabindex="-1" role="dialog" aria-labelledby="clientDeleteModalLabel" aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="clientDeleteModalLabel">Delete Client</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-
-      <div class="modal-body">
-        <p>Are you sure you want to delete this client?</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <button (click)="deleteClient(deleClient.username)" type="button" class="btn btn-danger">Delete</button>
-      </div>
-    </div>
+<ng-template #deleteModal let-modal>
+  <div class="modal-header">
+    <h4 class="modal-title" id="modal-basic-title2">Delete User</h4>
+    <button type="button" class="close" aria-label="Close" (click)="modal.dismiss('Cross click')">
+      <span aria-hidden="true"><i class="fa-solid fa-xmark"></i></span>
+    </button>
   </div>
-</div>
+  <div class="modal-body">
+    <p>Are you sure you want to delete this user?</p>
+  </div>
+  <div class="modal-footer">
+    <button  type="button" class="btn btn-secondary" (click)="modal.dismiss('Cross click')">Cancel</button>
+    <button (click)="deleteClient(deleClient.username); modal.close('Save click')" type="button" class="btn btn-danger">Delete</button>
+  </div>
+</ng-template>
+
 <!-- Notification for no Clients -->
 <div *ngIf="listCustomer?.length == 0" class="col-lg-12 col-md-12 col-xl-12">
-  <div class="alert alert-info" role="alert">
-    <h4 class="alert-heading">NO CLIENTS!</h4>
-    <p>No Clients were found.</p>
+  <div class="alert alert-dark" role="alert">
+    <h4 class="alert-heading">NO USERS!</h4>
+    <p>No Users were found.</p>
   </div>
 </div>

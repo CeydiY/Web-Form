@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import { ClientService} from "../../client.service";
 import { Client} from "../../Interfaces/Client";
 import {HttpErrorResponse} from "@angular/common/http";
-import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {ModalDismissReasons, NgbModal} from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: 'app-customer',
@@ -13,6 +13,7 @@ export class CustomerComponent implements OnInit{
   listCustomer: Client[] = [];
   modifyClient: Client;
   deleClient: Client;
+  closeResult: string;
 
   constructor(private clientService: ClientService, public modalService: NgbModal) {
   }
@@ -31,26 +32,31 @@ export class CustomerComponent implements OnInit{
     )
   }
 
-  openModel(client: Client, mode :string): void{
-    const container = document.getElementById('main-container');
-    const button = document.createElement('button');
 
-    button.type = 'button';
-    button.style.display = 'none';
-    button.setAttribute('data-bs-toggle', 'modal')
+  open(content, mode: string, client: Client) {
 
+    this.modalService.open(content, {ariaLabelledBy: 'modal-basic-title'}).result.then((result) => {
+      this.closeResult = `Closed with: ${result}`;
+    }, (reason) => {
+      this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+    });
     if(mode === 'edit'){
       this.modifyClient = client;
-      button.setAttribute('data-bs-target', '#updateClientModal')
+      this.listClients();
     }
     if(mode === 'delete'){
       this.deleClient = client;
-      button.setAttribute('data-bs-target', '#deleteClientModal')
+      this.listClients();
     }
-    container.appendChild(button);
-    button.click();
-
-    this.modalService.open(button);
+  }
+  private getDismissReason(reason: any): string {
+    if (reason === ModalDismissReasons.ESC) {
+      return 'by pressing ESC';
+    } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+      return 'by clicking on a backdrop';
+    } else {
+      return  `with: ${reason}`;
+    }
   }
 
   editClient(client : Client, id: string){
@@ -64,6 +70,7 @@ export class CustomerComponent implements OnInit{
       }
     );
   }
+
   onUpdateClient(client : Client, id: string){
     this.clientService.updateClient(client, id).subscribe(
       (response: Client) => {
@@ -77,7 +84,7 @@ export class CustomerComponent implements OnInit{
   deleteClient(id: string){
     this.clientService.deleteClient(id).subscribe(
       (response)=>{
-        this.ngOnInit();
+        this.listClients();
       },(error: HttpErrorResponse) =>{
         alert(error.message)
       }

@@ -31,7 +31,7 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
     HttpClientModule,
     NgbModule,
   ],
-  providers: [ClientService],
+  providers: [ClientService, NgbModule],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
