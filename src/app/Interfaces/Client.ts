@@ -5,7 +5,7 @@ export interface Client {
   age:number,
   address:string,
   gender:string,
-  country:string,
+  countries:string,
   birthdate:string,
   username:string,
   email:string,
